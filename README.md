@@ -36,7 +36,8 @@ Detailed project research and architecture notes are available in the `/docs` fo
 - MetaMask
 
 ## Propsal Lifecycle Diagram
-```User Connects Wallet
+```text
+User Connects Wallet
           ↓
 Receives Governance Tokens
           ↓
@@ -58,11 +59,13 @@ Proposal Passed?
 Execute       Proposal
 Proposal       Rejected
     ↓
-Treasury / Governance Action```
+Treasury / Governance Action
+```
 
 ## Wallet Authentication Flow
 
-```User Connects Wallet
+```text
+User Connects Wallet
           ↓
 Platform Generates Nonce
           ↓
@@ -72,11 +75,13 @@ Signature Verification
           ↓
 Nonce Validation
           ↓
-Secure Authentication Success```
+Secure Authentication Success
+```
 
 ## Smart Contract Interaction Flow
 
-```Frontend Application
+```text
+Frontend Application
           ↓
 Ethers.js / Web3 Calls
           ↓
@@ -86,7 +91,8 @@ Blockchain Network
           ↓
 Proposal Storage & Voting Logic
           ↓
-Treasury Contract Execution```
+Treasury Contract Execution
+```
 
 ## Future Improvements
 - AI-based governance risk analysis

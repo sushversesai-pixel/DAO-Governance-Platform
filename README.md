@@ -36,7 +36,7 @@ Detailed project research and architecture notes are available in the `/docs` fo
 - MetaMask
 
 ## Propsal Lifecycle Diagram
-User Connects Wallet
+```User Connects Wallet
           ↓
 Receives Governance Tokens
           ↓
@@ -71,7 +71,7 @@ Signature Verification
           ↓
 Nonce Validation
           ↓
-Secure Authentication Success
+Secure Authentication Success```
 
 ## Smart Contract Interaction Flow
 Frontend Application

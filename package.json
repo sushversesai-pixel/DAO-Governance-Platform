@@ -1,0 +1,20 @@
+{
+  "name": "dao-governance-platform-main",
+  "version": "1.0.0",
+  "description": "A secure decentralized governance platform enabling transparent proposal creation, token-based voting, and automated smart contract execution.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^5.6.1",
+    "hardhat": "^3.4.5"
+  }
+}

@@ -35,6 +35,57 @@ Detailed project research and architecture notes are available in the `/docs` fo
 - Ethers.js
 - MetaMask
 
+## Propsal Lifecycle Diagram
+User Connects Wallet
+          ↓
+Receives Governance Tokens
+          ↓
+Creates Proposal
+          ↓
+Voting Period Starts
+          ↓
+Members Vote
+          ↓
+Smart Contract Validates:
+- quorum
+- voting period
+- vote count
+          ↓
+Proposal Passed?
+     ↙          ↘
+   YES           NO
+    ↓             ↓
+Execute       Proposal
+Proposal       Rejected
+    ↓
+Treasury / Governance Action
+
+## Wallet Authentication Flow
+User Connects Wallet
+          ↓
+Platform Generates Nonce
+          ↓
+User Signs Message
+          ↓
+Signature Verification
+          ↓
+Nonce Validation
+          ↓
+Secure Authentication Success
+
+## Smart Contract Interaction Flow
+Frontend Application
+          ↓
+Ethers.js / Web3 Calls
+          ↓
+Governance Smart Contract
+          ↓
+Blockchain Network
+          ↓
+Proposal Storage & Voting Logic
+          ↓
+Treasury Contract Execution
+
 ## Future Improvements
 - AI-based governance risk analysis
 - Delegated voting

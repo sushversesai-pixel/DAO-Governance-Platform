@@ -58,10 +58,11 @@ Proposal Passed?
 Execute       Proposal
 Proposal       Rejected
     ↓
-Treasury / Governance Action
+Treasury / Governance Action```
 
 ## Wallet Authentication Flow
-User Connects Wallet
+
+```User Connects Wallet
           ↓
 Platform Generates Nonce
           ↓
@@ -74,7 +75,8 @@ Nonce Validation
 Secure Authentication Success```
 
 ## Smart Contract Interaction Flow
-Frontend Application
+
+```Frontend Application
           ↓
 Ethers.js / Web3 Calls
           ↓
@@ -84,7 +86,7 @@ Blockchain Network
           ↓
 Proposal Storage & Voting Logic
           ↓
-Treasury Contract Execution
+Treasury Contract Execution```
 
 ## Future Improvements
 - AI-based governance risk analysis

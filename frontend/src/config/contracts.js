@@ -6,16 +6,16 @@
 // Replace these with your actual deployed contract addresses
 export const CONTRACT_ADDRESSES = {
     // DAO Governance Contract
-    DAO: import.meta.env.VITE_DAO_ADDRESS || '0x0000000000000000000000000000000000000001',
+    DAO: import.meta.env.VITE_DAO_ADDRESS || '0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9',
     
     // Governance Token Contract
-    GOVERNANCE_TOKEN: import.meta.env.VITE_TOKEN_ADDRESS || '0x0000000000000000000000000000000000000002',
+    GOVERNANCE_TOKEN: import.meta.env.VITE_TOKEN_ADDRESS || '0x5FbDB2315678afecb367f032d93F642f64180aa3',
     
     // Treasury Contract
-    TREASURY: import.meta.env.VITE_TREASURY_ADDRESS || '0x0000000000000000000000000000000000000003',
+    TREASURY: import.meta.env.VITE_TREASURY_ADDRESS || '0xa513E6E4b8f2a923D98304ec87F64353C4D5C853',
     
     // TimeLock Contract
-    TIMELOCK: import.meta.env.VITE_TIMELOCK_ADDRESS || '0x0000000000000000000000000000000000000004',
+    TIMELOCK: import.meta.env.VITE_TIMELOCK_ADDRESS || '0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0',
 };
 
 // Network configuration

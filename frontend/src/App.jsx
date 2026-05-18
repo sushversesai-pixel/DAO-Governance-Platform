@@ -6,11 +6,13 @@ import ProposalCreator from './components/ProposalCreator';
 import ProposalList from './components/ProposalList';
 import ProposalVoting from './components/ProposalVoting';
 import { useWeb3 } from './context/Web3Context';
+import { useDAOContract } from './hooks/useContractHooks';
 import { motion } from 'framer-motion';
 import { CONTRACT_ADDRESSES } from './config/contracts';
 
 function App() {
   const { account } = useWeb3();
+  const { getProposals } = useDAOContract();
   const [selectedProposal, setSelectedProposal] = useState(null);
   const [proposals, setProposals] = useState([]);
   const [showProposalCreator, setShowProposalCreator] = useState(false);
@@ -19,56 +21,18 @@ function App() {
   // Check if contracts are configured
   const isConfigured = CONTRACT_ADDRESSES.DAO !== '0x0000000000000000000000000000000000000001';
 
-  // Mock proposals for demo (replace with real data from contract)
-  const mockProposals = [
-    {
-      id: '1',
-      title: 'Increase Treasury Fund Allocation',
-      description: 'Proposal to increase the treasury fund allocation by 10% to support new initiatives.',
-      proposer: '0x1234567890123456789012345678901234567890',
-      state: 'Active',
-      createdAt: '1715900400',
-      votes: {
-        forCount: 1250,
-        againstCount: 150,
-        abstainCount: 50
-      }
-    },
-    {
-      id: '2',
-      title: 'Protocol Governance Update',
-      description: 'Implement governance parameter changes for better security and efficiency.',
-      proposer: '0x0987654321098765432109876543210987654321',
-      state: 'Succeeded',
-      createdAt: '1715814000',
-      votes: {
-        forCount: 890,
-        againstCount: 45,
-        abstainCount: 20
-      }
-    },
-    {
-      id: '3',
-      title: 'Smart Contract Upgrade',
-      description: 'Upgrade smart contracts to latest OpenZeppelin standards for enhanced security.',
-      proposer: '0x2468135792468135792468135792468135792468',
-      state: 'Pending',
-      createdAt: '1715700000',
-      votes: {
-        forCount: 500,
-        againstCount: 100,
-        abstainCount: 30
-      }
-    }
-  ];
-
   useEffect(() => {
-    // Load proposals (replace with contract calls)
-    setProposals(mockProposals);
-    if (mockProposals.length > 0) {
-      setSelectedProposal(mockProposals[0]);
-    }
-  }, [refreshTrigger]);
+    const loadProposals = async () => {
+      if (!isConfigured) return;
+      const fetchedProposals = await getProposals();
+      setProposals(fetchedProposals);
+      // Select the first proposal by default if none is selected
+      if (fetchedProposals.length > 0) {
+        setSelectedProposal(prev => prev || fetchedProposals[0]);
+      }
+    };
+    loadProposals();
+  }, [refreshTrigger, getProposals, isConfigured]);
 
   const handleProposalCreated = () => {
     setShowProposalCreator(false);

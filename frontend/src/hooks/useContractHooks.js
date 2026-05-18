@@ -114,6 +114,63 @@ export const useDAOContract = () => {
         }
     }, [getContract]);
 
+    // Get all proposals from events
+    const getProposals = useCallback(async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const contract = getContract();
+            if (!contract) return [];
+            
+            // Query ProposalCreated events
+            const filter = contract.filters.ProposalCreated();
+            const events = await contract.queryFilter(filter, 0, 'latest');
+            
+            const proposals = await Promise.all(events.map(async (event) => {
+                // Event args in OZ v5: proposalId, proposer, targets, values, signatures, calldatas, voteStart, voteEnd, description
+                const args = event.args;
+                
+                // Fetch current state
+                const stateEnum = await contract.state(args.proposalId);
+                const stateStr = PROPOSAL_STATES[stateEnum];
+                
+                // Fetch votes
+                const [againstVotes, forVotes, abstainVotes] = await contract.proposalVotes(args.proposalId);
+                
+                // Get timestamp from block
+                const block = await provider.getBlock(event.blockNumber);
+                
+                // Extract title from description (first line)
+                const desc = args.description || '';
+                const titleMatch = desc.split('\n')[0];
+                const title = titleMatch.startsWith('# ') ? titleMatch.substring(2) : titleMatch;
+                
+                return {
+                    id: args.proposalId.toString(),
+                    title: title || 'Untitled Proposal',
+                    description: desc,
+                    proposer: args.proposer,
+                    state: stateStr,
+                    createdAt: block.timestamp.toString(),
+                    votes: {
+                        forCount: Number(forVotes) / 1e18, // assuming token has 18 decimals
+                        againstCount: Number(againstVotes) / 1e18,
+                        abstainCount: Number(abstainVotes) / 1e18
+                    }
+                };
+            }));
+            
+            // Return sorted by newest first
+            return proposals.sort((a, b) => Number(b.createdAt) - Number(a.createdAt));
+        } catch (err) {
+            console.error("Error fetching proposals:", err);
+            setError(err.message);
+            return [];
+        } finally {
+            setLoading(false);
+        }
+    }, [getContract, provider]);
+
     // Get proposal votes
     const getProposalVotes = useCallback(async (proposalId) => {
         try {

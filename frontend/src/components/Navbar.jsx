@@ -1,12 +1,10 @@
 import React from 'react';
 import { useWeb3 } from '../context/Web3Context';
-import { Wallet, Shield, Menu } from 'lucide-react';
+import { Shield, Menu } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Navbar = () => {
-    const { account, connectWallet, isConnecting } = useWeb3();
-
-    const shortenAddress = (addr) => `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+    const { account } = useWeb3();
 
     return (
         <nav className="navbar glass-card">
@@ -21,16 +19,7 @@ const Navbar = () => {
                 </motion.div>
 
                 <div className="nav-actions">
-                    <motion.button 
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={connectWallet}
-                        className={account ? "btn-secondary" : "btn-primary"}
-                        disabled={isConnecting}
-                    >
-                        <Wallet size={18} style={{ marginRight: '8px' }} />
-                        {account ? shortenAddress(account) : (isConnecting ? "Connecting..." : "Connect Wallet")}
-                    </motion.button>
+                    <appkit-button />
                 </div>
             </div>
 

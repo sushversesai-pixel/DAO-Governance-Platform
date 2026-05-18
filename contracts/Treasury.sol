@@ -4,12 +4,15 @@ pragma solidity ^0.8.24;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 
 /**
  * @title Treasury
  * @dev Secure vault for DAO funds. Only the owner (TimeLock) can release funds.
  */
 contract Treasury is Ownable, ReentrancyGuard {
+    using SafeERC20 for IERC20;
+
     event FundsReleased(address to, uint256 amount);
     event TokenReleased(address token, address to, uint256 amount);
 
@@ -43,7 +46,7 @@ contract Treasury is Ownable, ReentrancyGuard {
      */
     function releaseTokens(address token, address to, uint256 amount) external onlyOwner nonReentrant {
         require(IERC20(token).balanceOf(address(this)) >= amount, "Treasury: insufficient token balance");
-        IERC20(token).transfer(to, amount);
+        IERC20(token).safeTransfer(to, amount);
         emit TokenReleased(token, to, amount);
     }
 }

@@ -66,6 +66,9 @@ describe("DAO Governance Platform Unit Tests", function () {
     // Deployer renounces admin
     await timelock.revokeRole(adminRole, deployer.address);
 
+    // Transfer ownership of GovernanceToken to TimeLock
+    await token.transferOwnership(await timelock.getAddress());
+
     // 4. Deploy Treasury (owned by TimeLock)
     const Treasury = await ethers.getContractFactory("Treasury");
     treasury = await Treasury.deploy(await timelock.getAddress());

@@ -10,25 +10,25 @@ import * as Contracts from "./index.js";
 
 declare module "@nomicfoundation/hardhat-ethers/types" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
-  getContractFactory(name: 'Treasury', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.Treasury__factory>
+  getContractFactory(name: 'DAO', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.DAO__factory>
 getContractFactory(name: 'GovernanceToken', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.GovernanceToken__factory>
 getContractFactory(name: 'TimeLock', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.TimeLock__factory>
-getContractFactory(name: 'DAO', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.DAO__factory>
+getContractFactory(name: 'Treasury', signerOrOptions?: ethers.Signer | FactoryOptions): Promise<Contracts.Treasury__factory>
 
-  getContractAt(name: 'Treasury', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.Treasury>
+  getContractAt(name: 'DAO', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.DAO>
 getContractAt(name: 'GovernanceToken', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.GovernanceToken>
 getContractAt(name: 'TimeLock', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.TimeLock>
-getContractAt(name: 'DAO', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.DAO>
+getContractAt(name: 'Treasury', address: string | ethers.Addressable, signer?: ethers.Signer): Promise<Contracts.Treasury>
 
-  deployContract(name: 'Treasury', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Treasury>
+  deployContract(name: 'DAO', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.DAO>
 deployContract(name: 'GovernanceToken', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.GovernanceToken>
 deployContract(name: 'TimeLock', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.TimeLock>
-deployContract(name: 'DAO', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.DAO>
+deployContract(name: 'Treasury', signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Treasury>
 
-  deployContract(name: 'Treasury', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Treasury>
+  deployContract(name: 'DAO', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.DAO>
 deployContract(name: 'GovernanceToken', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.GovernanceToken>
 deployContract(name: 'TimeLock', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.TimeLock>
-deployContract(name: 'DAO', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.DAO>
+deployContract(name: 'Treasury', args: any[], signerOrOptions?: ethers.Signer | DeployContractOptions): Promise<Contracts.Treasury>
 
     // default types
     getContractFactory(

@@ -85,6 +85,12 @@ async function main() {
   await tx4.wait();
   console.log("Roles configured successfully.");
 
+  // Transfer ownership of GovernanceToken to TimeLock
+  console.log("Transferring GovernanceToken ownership to TimeLock...");
+  const txTokenOwnership = await tokenContract.transferOwnership(timelockAddress);
+  await txTokenOwnership.wait();
+  console.log("GovernanceToken ownership successfully transferred to TimeLock.");
+
   // 5. Deploy Treasury
   console.log("Deploying Treasury...");
   const Treasury = getFactory("Treasury");
